@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="FutureAI helps you discover useful AI tools for creativity, learning, coding and productivity.">
+<title>FutureAI — Discover the Future of AI</title>
+<style>
+:root{--bg:#080b14;--card:#111625;--card2:#171e30;--purple:#8b5cf6;--blue:#38bdf8;--text:#f1f5f9;--muted:#94a3b8;--border:#252e42}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+button,input{font:inherit}button{cursor:pointer}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 7%;border-bottom:1px solid var(--border);background:rgba(8,11,20,.96);position:sticky;top:0;z-index:20;backdrop-filter:blur(15px)}
+.logo{font-size:25px;font-weight:800;letter-spacing:-1px;color:white;text-decoration:none}.logo span{color:var(--purple)}
+.nav-links{display:flex;gap:26px;align-items:center}.nav-links a{color:var(--muted);text-decoration:none;font-size:14px}.nav-links a:hover{color:white}
+.nav-button,.primary-button{background:linear-gradient(110deg,var(--purple),#6366f1);border:0;border-radius:9px;padding:11px 20px;color:white;font-weight:700;text-decoration:none;display:inline-block}
+.menu-button{display:none;color:white;background:transparent;border:0;font-size:26px}
+.hero{min-height:590px;padding:105px 20px 75px;text-align:center;position:relative;isolation:isolate;background-image:linear-gradient(90deg,rgba(5,8,20,.50),rgba(5,8,20,.68) 48%,rgba(5,8,20,.48)),linear-gradient(0deg,rgba(8,11,20,.88),rgba(8,11,20,.05) 40%,rgba(8,11,20,.30)),url("assets/futureai-hero.png");background-size:cover;background-position:center;background-repeat:no-repeat}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(8,11,20,.12),transparent 65%);z-index:-1}
+.tag{display:inline-block;border:1px solid #6045a0;background:rgba(25,16,54,.65);color:#c4b5fd;padding:7px 15px;border-radius:30px;font-size:12px;margin-bottom:25px}
+.hero h1{font-size:clamp(40px,7vw,72px);line-height:1.1;letter-spacing:-3px;max-width:900px;margin:auto;text-shadow:0 3px 22px #000}
+.gradient{background:linear-gradient(90deg,#c084fc,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#e2e8f0;max-width:620px;margin:22px auto 30px;font-size:16px;text-shadow:0 2px 10px #000}
+.search-box{max-width:620px;margin:auto;display:flex;background:rgba(8,11,20,.88);border:1px solid #6650a2;border-radius:12px;padding:7px;box-shadow:0 0 25px rgba(139,92,246,.22)}
+.search-box input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:white;padding:12px}.search-box button{border:0;color:white;background:var(--purple);border-radius:8px;padding:10px 22px}
+.stats{display:flex;justify-content:center;gap:65px;margin-top:42px;flex-wrap:wrap}.stat strong{display:block;font-size:23px}.stat span{color:#cbd5e1;font-size:12px}
+section{padding:65px 7%}.section-header{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:30px}.section-header h2{font-size:28px}.section-header p{color:var(--muted);font-size:13px}
+.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:15px}.category{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:22px 12px;text-align:center;transition:.25s;color:white}.category:hover,.category.active{border-color:var(--purple);background:#19172c;transform:translateY(-4px)}.category .emoji{font-size:29px;display:block;margin-bottom:9px}.category h3{font-size:13px}.category small{color:var(--muted)}
+.tools-section{background:#0b0f1a}.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}.filter{padding:8px 17px;border-radius:30px;border:1px solid var(--border);background:var(--card);color:var(--muted);font-size:13px}.filter.active,.filter:hover{background:var(--purple);color:white;border-color:var(--purple)}
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.tool-card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:22px;transition:.25s}.tool-card:hover{transform:translateY(-5px);border-color:#7050b8}.tool-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}.tool-icon{width:48px;height:48px;border-radius:12px;background:var(--card2);display:grid;place-items:center;font-size:25px}.price{color:#86efac;background:rgba(34,197,94,.1);border-radius:20px;padding:4px 10px;font-size:11px}.price.paid{color:#fcd34d;background:rgba(234,179,8,.1)}.tool-card h3{font-size:17px}.tool-card p{color:var(--muted);font-size:13px;margin:8px 0 18px;min-height:43px}.tool-bottom{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:15px;gap:8px}.tool-category{color:#b9a3ff;font-size:11px}.tool-actions{display:flex;gap:8px;align-items:center}.visit{background:var(--purple);color:white;border:0;padding:7px 13px;border-radius:7px;font-size:12px;text-decoration:none}.favorite{background:var(--card2);color:#94a3b8;border:1px solid var(--border);border-radius:7px;padding:5px 9px;font-size:17px}.favorite.saved{color:#fb7185}.empty{grid-column:1/-1;text-align:center;padding:50px;color:var(--muted)}.center{text-align:center;margin-top:35px}.secondary{padding:12px 25px;background:transparent;color:white;border:1px solid var(--border);border-radius:9px}
+.creator{padding:85px 7%;background:radial-gradient(ellipse at 20% 50%,rgba(124,58,237,.15),transparent 55%),#090d19;border-top:1px solid #211a3b;border-bottom:1px solid #211a3b}
+.creator-inner{max-width:1000px;margin:auto;text-align:center}.creator-title{font-size:clamp(34px,6vw,58px);letter-spacing:-2px;margin-bottom:35px;background:linear-gradient(90deg,#c4b5fd,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.creator-card{display:flex;align-items:center;justify-content:center;gap:38px;max-width:760px;margin:auto;text-align:left;background:rgba(17,22,37,.75);border:1px solid var(--border);padding:30px;border-radius:22px}
+.creator-photo{width:190px;height:190px;flex:0 0 190px;border-radius:50%;object-fit:cover;object-position:center;border:4px solid #8b5cf6;box-shadow:0 0 28px rgba(139,92,246,.45)}
+.creator-copy h3{font-size:30px;margin-bottom:5px}.creator-role{color:#a78bfa;font-size:14px;font-weight:700;margin-bottom:12px}.creator-copy p{color:#cbd5e1;font-size:14px}
+.cta{text-align:center;padding:65px 20px;margin:30px 7%;border:1px solid #463477;border-radius:20px;background:linear-gradient(120deg,#18112d,#101c31)}.cta h2{font-size:30px}.cta p{color:var(--muted);margin:10px 0 25px}
+footer{border-top:1px solid var(--border);padding:35px 7%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:15px;color:var(--muted);font-size:13px}
+@media(max-width:850px){.categories{grid-template-columns:repeat(3,1fr)}.tools-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){nav{padding:0 5%}.menu-button{display:block}.nav-links{display:none;position:absolute;top:76px;left:0;width:100%;padding:22px;background:#101625;flex-direction:column;align-items:flex-start}.nav-links.show{display:flex}.nav-button{display:none}.hero{padding:75px 18px 60px;min-height:560px;background-position:45% center}.hero h1{letter-spacing:-1.5px}.stats{gap:25px}section{padding:48px 5%}.categories{grid-template-columns:repeat(2,1fr)}.tools-grid{grid-template-columns:1fr}.section-header{align-items:flex-start;flex-direction:column}.cta{margin:20px 5%}.creator{padding:60px 5%}.creator-card{flex-direction:column;text-align:center;padding:25px 18px;gap:20px}.creator-photo{width:155px;height:155px;flex-basis:155px}.creator-copy h3{font-size:25px}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="#home">Future<span>AI.</span></a>
+  <button class="menu-button" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+  <div class="nav-links">
+    <a href="#home">Home</a><a href="#categories">Categories</a><a href="#tools">Explore Tools</a><a href="#favorites" onclick="showFavorites()">Favorites</a><a href="#creator">Meet the Creator</a>
+  </div>
+  <a class="nav-button" href="#tools">Explore AI</a>
+</nav>
+
+<header class="hero" id="home">
+  <div class="tag">✦ YOUR GATEWAY TO ARTIFICIAL INTELLIGENCE</div>
+  <h1>Discover the <span class="gradient">Future</span><br>of Artificial Intelligence</h1>
+  <p>Explore powerful AI tools that help you create, learn, work and achieve more. Everything you need in one place.</p>
+  <div class="search-box"><input id="searchInput" type="search" placeholder="Search AI tools..." aria-label="Search AI tools"><button onclick="renderTools()">Search</button></div>
+  <div class="stats">
+    <div class="stat"><strong>100</strong><span>AI Tools</span></div>
+    <div class="stat"><strong>10</strong><span>Categories</span></div>
+    <div class="stat"><strong>Free</strong><span>To Explore</span></div>
+  </div>
+</header>
+
+<section id="categories">
+  <div class="section-header"><div><h2>Explore Categories</h2><p>Find the perfect AI tool for your needs.</p></div></div>
+  <div class="categories" id="categoryGrid"></div>
+</section>
+
+<section class="tools-section" id="tools">
+  <div class="section-header"><div><h2>Discover AI Tools</h2><p>Explore 100 AI tools across 10 categories.</p></div></div>
+  <div class="filters">
+    <button class="filter active" data-filter="All">All Tools</button>
+    <button class="filter" data-filter="Free">Free Plan</button>
+    <button class="filter" data-filter="Paid">Paid</button>
+    <button class="filter" data-filter="Favorites">Favorites ♥</button>
+  </div>
+  <div class="tools-grid" id="toolsGrid"></div>
+  <div class="center"><button class="secondary" onclick="clearFilters()">Show All Tools</button></div>
+</section>
+
+<section class="creator" id="creator">
+  <div class="creator-inner">
+    <h2 class="creator-title">MEET THE CREATOR</h2>
+    <div class="creator-card">
+      <img class="creator-photo" src="assets/malik-gulzaib.jpg" alt="Malik Gulzaib">
+      <div class="creator-copy">
+        <h3>Malik Gulzaib</h3>
+        <div class="creator-role">Founder &amp; Creator of FutureAI</div>
+        <p>I'm passionate about technology, creativity and exploring how artificial intelligence can make learning, creating and everyday work easier.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <h2>Ready to Explore the Future?</h2>
+  <p>Discover smarter ways to create, learn and work with AI.</p>
+  <a href="#tools" class="primary-button">Explore AI Tools →</a>
+</div>
+
+<footer>
+  <div><a class="logo" href="#home">Future<span>AI.</span></a><p>Discover. Create. Innovate.</p></div>
+  <div>© 2026 FutureAI. All rights reserved.<br>Built for the future.</div>
+</footer>
+
+<script>
+const categories=[
+{name:"AI Chatbots",icon:"💬"},{name:"AI Image",icon:"🎨"},{name:"AI Video",icon:"🎬"},{name:"AI Writing",icon:"✍️"},{name:"AI Coding",icon:"💻"},
+{name:"AI Voice",icon:"🎙️"},{name:"AI Education",icon:"📚"},{name:"AI Design",icon:"🖌️"},{name:"AI Productivity",icon:"⚡"},{name:"AI Business",icon:"💼"}
+];
+const tools=[
+  {
+    "name": "ChatGPT",
+    "category": "AI Chatbots",
+    "price": "Free",
+    "description": "AI assistant for writing, learning and problem solving.",
+    "url": "https://chatgpt.com",
+    "icon": "🤖"
+  },
+  {
+    "name": "Claude",
+    "category": "AI Chatbots",
+    "price": "Free",
+    "description": "AI assistant for reasoning, writing and analysis.",
+    "url": "https://claude.ai",
+    "icon": "🧠"
+  },
+  {
+    "name": "Google Gemini",
+    "category": "AI Chatbots",
+    "price": "Free",
+    "description": "Google's AI assistant for everyday tasks.",
+    "url": "https://gemini.google.com",
+    "icon": "✨"
+  },
+  {
+    "name": "Microsoft Copilot",
+    "category": "AI Chatbots",
+    "price": "Free",
+    "description": "AI assistant for work, search and creativity.",
+    "url": "https://copilot.microsoft.com",
+    "icon": "🔷"
+  },
+  {
+    "name": "Perplexity",
+    "category": "AI Chatbots",
+    "price": "Free",
+    "description": "AI-powered answer engine for research and discovery.",
+    "url": "https://www.perplexity.ai",
+    "icon": "🔎"
+  },
+  {
+    "name": "Poe",
+    "category": "AI Chatbots",
+    "price": "Free",
+    "description": "Explore and chat with different AI assistants.",
+    "url": "https://poe.com",
+    "icon": "💬"
+  },
+  {
+    "name": "You.com",
+    "category": "AI Chatbots",
+    "price": "Free",
+    "description": "AI search and assistant tools in one place.",
+    "url": "https://you.com",
+    "icon": "🌐"
+  },
+  {
+    "name": "Pi",
+    "category": "AI Chatbots",
+    "price": "Free",
+    "description": "Conversational AI designed for helpful discussions.",
+    "url": "https://pi.ai",
+    "icon": "🫧"
+  },
+  {
+    "name": "Character.AI",
+    "category": "AI Chatbots",
+    "price": "Free",
+    "description": "Chat with user-created AI characters.",
+    "url": "https://character.ai",
+    "icon": "🎭"
+  },
+  {
+    "name": "HuggingChat",
+    "category": "AI Chatbots",
+    "price": "Free",
+    "description": "Chat with open-source AI models.",
+    "url": "https://huggingface.co/chat",
+    "icon": "🤗"
+  },
+  {
+    "name": "Midjourney",
+    "category": "AI Image",
+    "price": "Paid",
+    "description": "Create imaginative images from text prompts.",
+    "url": "https://www.midjourney.com",
+    "icon": "🎨"
+  },
+  {
+    "name": "Leonardo AI",
+    "category": "AI Image",
+    "price": "Free",
+    "description": "Generate images and creative visual assets.",
+    "url": "https://leonardo.ai",
+    "icon": "🖼️"
+  },
+  {
+    "name": "Ideogram",
+    "category": "AI Image",
+    "price": "Free",
+    "description": "Create images and designs with text rendering.",
+    "url": "https://ideogram.ai",
+    "icon": "🌈"
+  },
+  {
+    "name": "Adobe Firefly",
+    "category": "AI Image",
+    "price": "Free",
+    "description": "Generate and edit images with Adobe AI tools.",
+    "url": "https://firefly.adobe.com",
+    "icon": "🔥"
+  },
+  {
+    "name": "DALL·E",
+    "category": "AI Image",
+    "price": "Paid",
+    "description": "Generate images from natural-language descriptions.",
+    "url": "https://openai.com/dall-e-3",
+    "icon": "🪄"
+  },
+  {
+    "name": "Dream by WOMBO",
+    "category": "AI Image",
+    "price": "Free",
+    "description": "Turn text prompts into stylized artwork.",
+    "url": "https://dream.ai",
+    "icon": "🌙"
+  },
+  {
+    "name": "Playground AI",
+    "category": "AI Image",
+    "price": "Free",
+    "description": "Create and edit AI-generated images.",
+    "url": "https://playground.com",
+    "icon": "🛝"
+  },
+  {
+    "name": "NightCafe",
+    "category": "AI Image",
+    "price": "Free",
+    "description": "Explore AI art generation and creative styles.",
+    "url": "https://nightcafe.studio",
+    "icon": "🌃"
+  },
+  {
+    "name": "getimg.ai",
+    "category": "AI Image",
+    "price": "Free",
+    "description": "Generate and edit images with a suite of AI tools.",
+    "url": "https://getimg.ai",
+    "icon": "🧩"
+  },
+  {
+    "name": "Craiyon",
+    "category": "AI Image",
+    "price": "Free",
+    "description": "Create images from simple text prompts.",
+    "url": "https://www.craiyon.com",
+    "icon": "✏️"
+  },
+  {
+    "name": "Runway",
+    "category": "AI Video",
+    "price": "Free",
+    "description": "AI-powered video generation and editing tools.",
+    "url": "https://runwayml.com",
+    "icon": "🎬"
+  },
+  {
+    "name": "Pika",
+    "category": "AI Video",
+    "price": "Free",
+    "description": "Create short videos from text and images.",
+    "url": "https://pika.art",
+    "icon": "🎥"
+  },
+  {
+    "name": "Synthesia",
+    "category": "AI Video",
+    "price": "Paid",
+    "description": "Create presenter videos with AI avatars.",
+    "url": "https://www.synthesia.io",
+    "icon": "🧑‍💻"
+  },
+  {
+    "name": "InVideo AI",
+    "category": "AI Video",
+    "price": "Free",
+    "description": "Turn ideas and prompts into videos.",
+    "url": "https://invideo.io",
+    "icon": "📽️"
+  },
+  {
+    "name": "Luma Dream Machine",
+    "category": "AI Video",
+    "price": "Free",
+    "description": "Generate cinematic videos from prompts.",
+    "url": "https://lumalabs.ai/dream-machine",
+    "icon": "🌌"
+  },
+  {
+    "name": "Kling AI",
+    "category": "AI Video",
+    "price": "Free",
+    "description": "Create AI videos and visual scenes.",
+    "url": "https://klingai.com",
+    "icon": "🎞️"
+  },
+  {
+    "name": "HeyGen",
+    "category": "AI Video",
+    "price": "Free",
+    "description": "Create videos with AI avatars and translation.",
+    "url": "https://www.heygen.com",
+    "icon": "🗣️"
+  },
+  {
+    "name": "VEED",
+    "category": "AI Video",
+    "price": "Free",
+    "description": "Online video editor with AI features.",
+    "url": "https://www.veed.io",
+    "icon": "✂️"
+  },
+  {
+    "name": "Kapwing",
+    "category": "AI Video",
+    "price": "Free",
+    "description": "Edit videos and create content with AI assistance.",
+    "url": "https://www.kapwing.com",
+    "icon": "📹"
+  },
+  {
+    "name": "Descript",
+    "category": "AI Video",
+    "price": "Free",
+    "description": "Edit audio and video using text-based workflows.",
+    "url": "https://www.descript.com",
+    "icon": "🎧"
+  },
+  {
+    "name": "Grammarly",
+    "category": "AI Writing",
+    "price": "Free",
+    "description": "Improve grammar, clarity and tone in writing.",
+    "url": "https://www.grammarly.com",
+    "icon": "📝"
+  },
+  {
+    "name": "QuillBot",
+    "category": "AI Writing",
+    "price": "Free",
+    "description": "Paraphrase, summarize and refine written text.",
+    "url": "https://quillbot.com",
+    "icon": "📖"
+  },
+  {
+    "name": "Jasper",
+    "category": "AI Writing",
+    "price": "Paid",
+    "description": "AI writing platform for marketing content.",
+    "url": "https://www.jasper.ai",
+    "icon": "✍️"
+  },
+  {
+    "name": "Copy.ai",
+    "category": "AI Writing",
+    "price": "Free",
+    "description": "Create marketing copy and content with AI.",
+    "url": "https://www.copy.ai",
+    "icon": "📋"
+  },
+  {
+    "name": "Writesonic",
+    "category": "AI Writing",
+    "price": "Free",
+    "description": "AI writing and content generation platform.",
+    "url": "https://writesonic.com",
+    "icon": "🖊️"
+  },
+  {
+    "name": "Rytr",
+    "category": "AI Writing",
+    "price": "Free",
+    "description": "Generate drafts for emails, blogs and more.",
+    "url": "https://rytr.me",
+    "icon": "📄"
+  },
+  {
+    "name": "Sudowrite",
+    "category": "AI Writing",
+    "price": "Paid",
+    "description": "Creative writing assistant for fiction writers.",
+    "url": "https://www.sudowrite.com",
+    "icon": "📚"
+  },
+  {
+    "name": "Wordtune",
+    "category": "AI Writing",
+    "price": "Free",
+    "description": "Rewrite and improve sentences with AI.",
+    "url": "https://www.wordtune.com",
+    "icon": "🔤"
+  },
+  {
+    "name": "Anyword",
+    "category": "AI Writing",
+    "price": "Paid",
+    "description": "Create and optimize marketing copy.",
+    "url": "https://anyword.com",
+    "icon": "📣"
+  },
+  {
+    "name": "HyperWrite",
+    "category": "AI Writing",
+    "price": "Free",
+    "description": "AI writing assistant for everyday tasks.",
+    "url": "https://www.hyperwriteai.com",
+    "icon": "⚡"
+  },
+  {
+    "name": "GitHub Copilot",
+    "category": "AI Coding",
+    "price": "Paid",
+    "description": "AI coding assistant integrated with developer tools.",
+    "url": "https://github.com/features/copilot",
+    "icon": "🐙"
+  },
+  {
+    "name": "Cursor",
+    "category": "AI Coding",
+    "price": "Free",
+    "description": "AI-powered code editor for developers.",
+    "url": "https://cursor.com",
+    "icon": "⌨️"
+  },
+  {
+    "name": "Replit",
+    "category": "AI Coding",
+    "price": "Free",
+    "description": "Build, run and deploy projects with AI assistance.",
+    "url": "https://replit.com",
+    "icon": "💻"
+  },
+  {
+    "name": "Codeium / Windsurf",
+    "category": "AI Coding",
+    "price": "Free",
+    "description": "AI coding assistance and agentic development tools.",
+    "url": "https://windsurf.com",
+    "icon": "🌊"
+  },
+  {
+    "name": "Amazon Q Developer",
+    "category": "AI Coding",
+    "price": "Free",
+    "description": "AI assistant for software development on AWS.",
+    "url": "https://aws.amazon.com/q/developer/",
+    "icon": "☁️"
+  },
+  {
+    "name": "Tabnine",
+    "category": "AI Coding",
+    "price": "Paid",
+    "description": "AI code completion and development assistance.",
+    "url": "https://www.tabnine.com",
+    "icon": "🧩"
+  },
+  {
+    "name": "Sourcegraph Cody",
+    "category": "AI Coding",
+    "price": "Free",
+    "description": "AI coding assistant that understands codebases.",
+    "url": "https://sourcegraph.com/cody",
+    "icon": "🔍"
+  },
+  {
+    "name": "v0",
+    "category": "AI Coding",
+    "price": "Free",
+    "description": "Generate web interfaces from text prompts.",
+    "url": "https://v0.dev",
+    "icon": "🪄"
+  },
+  {
+    "name": "Bolt.new",
+    "category": "AI Coding",
+    "price": "Free",
+    "description": "Build web applications from prompts in the browser.",
+    "url": "https://bolt.new",
+    "icon": "⚡"
+  },
+  {
+    "name": "Lovable",
+    "category": "AI Coding",
+    "price": "Free",
+    "description": "Create full-stack apps by describing your idea.",
+    "url": "https://lovable.dev",
+    "icon": "💜"
+  },
+  {
+    "name": "ElevenLabs",
+    "category": "AI Voice",
+    "price": "Free",
+    "description": "Generate natural-sounding AI speech and voices.",
+    "url": "https://elevenlabs.io",
+    "icon": "🎙️"
+  },
+  {
+    "name": "Murf AI",
+    "category": "AI Voice",
+    "price": "Free",
+    "description": "Create voiceovers for videos and presentations.",
+    "url": "https://murf.ai",
+    "icon": "🎤"
+  },
+  {
+    "name": "PlayHT",
+    "category": "AI Voice",
+    "price": "Free",
+    "description": "AI text-to-speech and voice generation.",
+    "url": "https://play.ht",
+    "icon": "🔊"
+  },
+  {
+    "name": "Speechify",
+    "category": "AI Voice",
+    "price": "Free",
+    "description": "Listen to text with AI-powered voices.",
+    "url": "https://speechify.com",
+    "icon": "📢"
+  },
+  {
+    "name": "Resemble AI",
+    "category": "AI Voice",
+    "price": "Paid",
+    "description": "Create and manage synthetic voices.",
+    "url": "https://www.resemble.ai",
+    "icon": "🎚️"
+  },
+  {
+    "name": "Suno",
+    "category": "AI Voice",
+    "price": "Free",
+    "description": "Create original songs using text prompts.",
+    "url": "https://suno.com",
+    "icon": "🎵"
+  },
+  {
+    "name": "Udio",
+    "category": "AI Voice",
+    "price": "Free",
+    "description": "Generate music from text descriptions.",
+    "url": "https://www.udio.com",
+    "icon": "🎼"
+  },
+  {
+    "name": "AIVA",
+    "category": "AI Voice",
+    "price": "Free",
+    "description": "Compose music with AI assistance.",
+    "url": "https://www.aiva.ai",
+    "icon": "🎹"
+  },
+  {
+    "name": "LALAL.AI",
+    "category": "AI Voice",
+    "price": "Free",
+    "description": "Separate vocals and instruments from audio.",
+    "url": "https://www.lalal.ai",
+    "icon": "🎧"
+  },
+  {
+    "name": "Adobe Podcast",
+    "category": "AI Voice",
+    "price": "Free",
+    "description": "Enhance spoken audio and recordings.",
+    "url": "https://podcast.adobe.com",
+    "icon": "🎙️"
+  },
+  {
+    "name": "Khan Academy",
+    "category": "AI Education",
+    "price": "Free",
+    "description": "Learn subjects with lessons and practice resources.",
+    "url": "https://www.khanacademy.org",
+    "icon": "🎓"
+  },
+  {
+    "name": "Quizlet",
+    "category": "AI Education",
+    "price": "Free",
+    "description": "Study with flashcards, practice tests and AI tools.",
+    "url": "https://quizlet.com",
+    "icon": "🗂️"
+  },
+  {
+    "name": "Duolingo",
+    "category": "AI Education",
+    "price": "Free",
+    "description": "Learn languages through interactive lessons.",
+    "url": "https://www.duolingo.com",
+    "icon": "🦉"
+  },
+  {
+    "name": "Photomath",
+    "category": "AI Education",
+    "price": "Free",
+    "description": "Understand math problems with step-by-step learning support.",
+    "url": "https://photomath.com",
+    "icon": "➗"
+  },
+  {
+    "name": "Wolfram Alpha",
+    "category": "AI Education",
+    "price": "Free",
+    "description": "Compute answers and explore knowledge across subjects.",
+    "url": "https://www.wolframalpha.com",
+    "icon": "🧮"
+  },
+  {
+    "name": "Socratic",
+    "category": "AI Education",
+    "price": "Free",
+    "description": "Get learning support for school subjects.",
+    "url": "https://socratic.org",
+    "icon": "📘"
+  },
+  {
+    "name": "Elicit",
+    "category": "AI Education",
+    "price": "Free",
+    "description": "Find and summarize academic research papers.",
+    "url": "https://elicit.com",
+    "icon": "🔬"
+  },
+  {
+    "name": "Consensus",
+    "category": "AI Education",
+    "price": "Free",
+    "description": "Search scientific research and evidence-based answers.",
+    "url": "https://consensus.app",
+    "icon": "📑"
+  },
+  {
+    "name": "NotebookLM",
+    "category": "AI Education",
+    "price": "Free",
+    "description": "Study and explore information from your own sources.",
+    "url": "https://notebooklm.google.com",
+    "icon": "📓"
+  },
+  {
+    "name": "Studyable",
+    "category": "AI Education",
+    "price": "Free",
+    "description": "Create study materials and practice with AI.",
+    "url": "https://studyable.app",
+    "icon": "🧠"
+  },
+  {
+    "name": "Canva",
+    "category": "AI Design",
+    "price": "Free",
+    "description": "Create graphics, presentations and social media designs.",
+    "url": "https://www.canva.com",
+    "icon": "🖌️"
+  },
+  {
+    "name": "Figma",
+    "category": "AI Design",
+    "price": "Free",
+    "description": "Design and prototype digital products collaboratively.",
+    "url": "https://www.figma.com",
+    "icon": "🎯"
+  },
+  {
+    "name": "Microsoft Designer",
+    "category": "AI Design",
+    "price": "Free",
+    "description": "Create designs and images with AI assistance.",
+    "url": "https://designer.microsoft.com",
+    "icon": "🪄"
+  },
+  {
+    "name": "Looka",
+    "category": "AI Design",
+    "price": "Paid",
+    "description": "Create brand identities and logo concepts.",
+    "url": "https://looka.com",
+    "icon": "🏷️"
+  },
+  {
+    "name": "Khroma",
+    "category": "AI Design",
+    "price": "Free",
+    "description": "Discover color palettes for design projects.",
+    "url": "https://www.khroma.co",
+    "icon": "🎨"
+  },
+  {
+    "name": "Remove.bg",
+    "category": "AI Design",
+    "price": "Free",
+    "description": "Remove image backgrounds automatically.",
+    "url": "https://www.remove.bg",
+    "icon": "✂️"
+  },
+  {
+    "name": "Cleanup.pictures",
+    "category": "AI Design",
+    "price": "Free",
+    "description": "Remove unwanted objects from images.",
+    "url": "https://cleanup.pictures",
+    "icon": "🧽"
+  },
+  {
+    "name": "Clipdrop",
+    "category": "AI Design",
+    "price": "Free",
+    "description": "Use AI tools for image cleanup and creation.",
+    "url": "https://clipdrop.co",
+    "icon": "🖼️"
+  },
+  {
+    "name": "Designs.ai",
+    "category": "AI Design",
+    "price": "Paid",
+    "description": "Create logos, videos and marketing designs.",
+    "url": "https://designs.ai",
+    "icon": "💡"
+  },
+  {
+    "name": "Uizard",
+    "category": "AI Design",
+    "price": "Free",
+    "description": "Turn ideas and sketches into interface designs.",
+    "url": "https://uizard.io",
+    "icon": "📱"
+  },
+  {
+    "name": "Notion AI",
+    "category": "AI Productivity",
+    "price": "Paid",
+    "description": "AI assistance for notes, documents and workflows.",
+    "url": "https://www.notion.so/product/ai",
+    "icon": "📓"
+  },
+  {
+    "name": "Gamma",
+    "category": "AI Productivity",
+    "price": "Free",
+    "description": "Create presentations, documents and web pages.",
+    "url": "https://gamma.app",
+    "icon": "📊"
+  },
+  {
+    "name": "Zapier",
+    "category": "AI Productivity",
+    "price": "Free",
+    "description": "Automate workflows between online applications.",
+    "url": "https://zapier.com",
+    "icon": "⚙️"
+  },
+  {
+    "name": "Make",
+    "category": "AI Productivity",
+    "price": "Free",
+    "description": "Connect apps and automate visual workflows.",
+    "url": "https://www.make.com",
+    "icon": "🔗"
+  },
+  {
+    "name": "Motion",
+    "category": "AI Productivity",
+    "price": "Paid",
+    "description": "Plan tasks and schedules with AI assistance.",
+    "url": "https://www.usemotion.com",
+    "icon": "🗓️"
+  },
+  {
+    "name": "Otter.ai",
+    "category": "AI Productivity",
+    "price": "Free",
+    "description": "Transcribe meetings and summarize conversations.",
+    "url": "https://otter.ai",
+    "icon": "🦦"
+  },
+  {
+    "name": "Fireflies.ai",
+    "category": "AI Productivity",
+    "price": "Free",
+    "description": "Record, transcribe and summarize meetings.",
+    "url": "https://fireflies.ai",
+    "icon": "🔥"
+  },
+  {
+    "name": "Reclaim.ai",
+    "category": "AI Productivity",
+    "price": "Free",
+    "description": "Organize calendars and protect time for tasks.",
+    "url": "https://reclaim.ai",
+    "icon": "⏳"
+  },
+  {
+    "name": "Tome",
+    "category": "AI Productivity",
+    "price": "Free",
+    "description": "Create and share AI-assisted visual narratives.",
+    "url": "https://tome.app",
+    "icon": "📑"
+  },
+  {
+    "name": "DeepL",
+    "category": "AI Productivity",
+    "price": "Free",
+    "description": "Translate text and improve writing across languages.",
+    "url": "https://www.deepl.com",
+    "icon": "🌍"
+  },
+  {
+    "name": "HubSpot",
+    "category": "AI Business",
+    "price": "Free",
+    "description": "CRM and marketing tools with AI features.",
+    "url": "https://www.hubspot.com",
+    "icon": "🧡"
+  },
+  {
+    "name": "Salesforce Einstein",
+    "category": "AI Business",
+    "price": "Paid",
+    "description": "AI features for customer relationship management.",
+    "url": "https://www.salesforce.com/einstein/",
+    "icon": "☁️"
+  },
+  {
+    "name": "Intercom",
+    "category": "AI Business",
+    "price": "Paid",
+    "description": "Customer service platform with AI support tools.",
+    "url": "https://www.intercom.com",
+    "icon": "💬"
+  },
+  {
+    "name": "Zendesk AI",
+    "category": "AI Business",
+    "price": "Paid",
+    "description": "AI-powered customer service and support workflows.",
+    "url": "https://www.zendesk.com",
+    "icon": "🎧"
+  },
+  {
+    "name": "Tidio",
+    "category": "AI Business",
+    "price": "Free",
+    "description": "Customer support chat and AI chatbot tools.",
+    "url": "https://www.tidio.com",
+    "icon": "🤝"
+  },
+  {
+    "name": "Browse AI",
+    "category": "AI Business",
+    "price": "Free",
+    "description": "Monitor websites and extract information automatically.",
+    "url": "https://www.browse.ai",
+    "icon": "🕷️"
+  },
+  {
+    "name": "Clay",
+    "category": "AI Business",
+    "price": "Free",
+    "description": "Research contacts and enrich business data.",
+    "url": "https://www.clay.com",
+    "icon": "🧱"
+  },
+  {
+    "name": "AdCreative.ai",
+    "category": "AI Business",
+    "price": "Paid",
+    "description": "Generate advertising creatives with AI.",
+    "url": "https://www.adcreative.ai",
+    "icon": "📣"
+  },
+  {
+    "name": "Durable",
+    "category": "AI Business",
+    "price": "Paid",
+    "description": "Build business websites with AI assistance.",
+    "url": "https://durable.co",
+    "icon": "🏗️"
+  },
+  {
+    "name": "Pictory",
+    "category": "AI Business",
+    "price": "Paid",
+    "description": "Turn scripts and content into marketing videos.",
+    "url": "https://pictory.ai",
+    "icon": "📺"
+  }
+];
+let activeCategory="All",activeFilter="All";
+let favorites=[];
+try{favorites=JSON.parse(localStorage.getItem("futureai-favorites")||"[]");if(!Array.isArray(favorites))favorites=[];}catch(e){favorites=[];}
+
+function renderCategories(){
+ document.getElementById("categoryGrid").innerHTML=categories.map(cat=>`
+ <button class="category ${activeCategory===cat.name?"active":""}" onclick="selectCategory('${cat.name}')">
+ <span class="emoji">${cat.icon}</span><h3>${cat.name}</h3><small>Explore tools</small></button>`).join("");
+}
+function renderTools(){
+ const query=document.getElementById("searchInput").value.toLowerCase().trim();
+ const filtered=tools.filter(tool=>{
+  const matchesSearch=(tool.name+" "+tool.description+" "+tool.category).toLowerCase().includes(query);
+  const matchesCategory=activeCategory==="All"||tool.category===activeCategory;
+  const matchesFilter=activeFilter==="All"||(activeFilter==="Free"&&tool.price==="Free")||(activeFilter==="Paid"&&tool.price==="Paid")||(activeFilter==="Favorites"&&favorites.includes(tool.name));
+  return matchesSearch&&matchesCategory&&matchesFilter;
+ });
+ const grid=document.getElementById("toolsGrid");
+ if(!filtered.length){grid.innerHTML='<div class="empty"><h3>No tools found</h3><p>Try another search or category.</p></div>';return;}
+ grid.innerHTML=filtered.map((tool,index)=>`
+ <article class="tool-card"><div class="tool-top"><div class="tool-icon">${tool.icon}</div><span class="price ${tool.price==="Paid"?"paid":""}">${tool.price==="Free"?"Free plan":"Paid"}</span></div>
+ <h3>${escapeHTML(tool.name)}</h3><p>${escapeHTML(tool.description)}</p>
+ <div class="tool-bottom"><span class="tool-category">${escapeHTML(tool.category)}</span><div class="tool-actions">
+ <button class="favorite ${favorites.includes(tool.name)?"saved":""}" aria-label="Toggle favorite" onclick="toggleFavorite(${JSON.stringify(tool.name)})">${favorites.includes(tool.name)?"♥":"♡"}</button>
+ <a class="visit" href="${tool.url}" target="_blank" rel="noopener noreferrer">Visit ↗</a></div></div></article>`).join("");
+}
+function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function selectCategory(category){activeCategory=activeCategory===category?"All":category;activeFilter="All";document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b.dataset.filter==="All"));renderCategories();renderTools();document.getElementById("tools").scrollIntoView({behavior:"smooth"});}
+function toggleFavorite(name){favorites=favorites.includes(name)?favorites.filter(x=>x!==name):[...favorites,name];localStorage.setItem("futureai-favorites",JSON.stringify(favorites));renderTools();}
+function showFavorites(){activeCategory="All";activeFilter="Favorites";document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b.dataset.filter==="Favorites"));renderCategories();renderTools();}
+document.querySelectorAll(".filter").forEach(button=>button.addEventListener("click",()=>{activeFilter=button.dataset.filter;activeCategory="All";document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b===button));renderCategories();renderTools();}));
+document.getElementById("searchInput").addEventListener("input",renderTools);
+function clearFilters(){activeCategory="All";activeFilter="All";document.getElementById("searchInput").value="";document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b.dataset.filter==="All"));renderCategories();renderTools();}
+renderCategories();renderTools();
+</script>
+</body>
+</html>
