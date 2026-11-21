@@ -1,724 +1,176 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FutureAI - Discover the Future of AI</title>
-<meta name="description" content="Discover the best AI tools for productivity, creativity, education, coding and more.">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FutureAI — Discover the Future</title>
 <style>
-:root {
-  --bg: #080b14;
-  --card: #111625;
-  --card2: #171e30;
-  --purple: #8b5cf6;
-  --blue: #38bdf8;
-  --text: #f1f5f9;
-  --muted: #94a3b8;
-  --border: #252e42;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: Inter, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
-
-button, input { font: inherit; }
-
-button { cursor: pointer; }
-
-nav {
-  height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 7%;
-  border-bottom: 1px solid var(--border);
-  background: rgba(8,11,20,.95);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  backdrop-filter: blur(15px);
-}
-
-.logo {
-  font-size: 25px;
-  font-weight: 800;
-  letter-spacing: -1px;
-}
-
-.logo span { color: var(--purple); }
-
-.nav-links {
-  display: flex;
-  gap: 28px;
-  align-items: center;
-}
-
-.nav-links a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 14px;
-  transition: .2s;
-}
-
-.nav-links a:hover { color: white; }
-
-.nav-button, .primary-button {
-  background: linear-gradient(110deg,var(--purple),#6366f1);
-  border: 0;
-  border-radius: 9px;
-  padding: 11px 20px;
-  color: white;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.menu-button {
-  display: none;
-  color: white;
-  background: transparent;
-  border: 0;
-  font-size: 26px;
-}
-
-.hero {
-  padding: 100px 20px 80px;
-  text-align: center;
-  background:
-    radial-gradient(ellipse at 50% 0%,rgba(124,58,237,.22),transparent 60%),
-    radial-gradient(ellipse at 80% 40%,rgba(56,189,248,.08),transparent 50%);
-}
-
-.tag {
-  display: inline-block;
-  border: 1px solid #6045a0;
-  background: rgba(139,92,246,.12);
-  color: #c4b5fd;
-  padding: 7px 15px;
-  border-radius: 30px;
-  font-size: 12px;
-  margin-bottom: 25px;
-}
-
-.hero h1 {
-  font-size: clamp(40px,7vw,72px);
-  line-height: 1.1;
-  letter-spacing: -3px;
-  max-width: 850px;
-  margin: auto;
-}
-
-.gradient {
-  background: linear-gradient(90deg,#a78bfa,#38bdf8);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.hero p {
-  color: var(--muted);
-  max-width: 600px;
-  margin: 22px auto 30px;
-  font-size: 16px;
-}
-
-.search-box {
-  max-width: 620px;
-  margin: auto;
-  display: flex;
-  background: var(--card);
-  border: 1px solid #343c53;
-  border-radius: 12px;
-  padding: 7px;
-}
-
-.search-box input {
-  flex: 1;
-  min-width: 0;
-  background: transparent;
-  border: 0;
-  outline: 0;
-  color: white;
-  padding: 12px;
-}
-
-.search-box button {
-  border: 0;
-  color: white;
-  background: var(--purple);
-  border-radius: 8px;
-  padding: 10px 22px;
-}
-
-.stats {
-  display: flex;
-  justify-content: center;
-  gap: 65px;
-  margin-top: 42px;
-  flex-wrap: wrap;
-}
-
-.stat strong {
-  display: block;
-  font-size: 23px;
-}
-
-.stat span { color: var(--muted); font-size: 12px; }
-
-section { padding: 65px 7%; }
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 15px;
-  margin-bottom: 30px;
-}
-
-.section-header h2 { font-size: 28px; }
-
-.section-header p {
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.categories {
-  display: grid;
-  grid-template-columns: repeat(5,1fr);
-  gap: 15px;
-}
-
-.category {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 13px;
-  padding: 22px 12px;
-  text-align: center;
-  transition: .25s;
-  color: white;
-}
-
-.category:hover, .category.active {
-  border-color: var(--purple);
-  background: #19172c;
-  transform: translateY(-4px);
-}
-
-.category .emoji {
-  font-size: 29px;
-  display: block;
-  margin-bottom: 9px;
-}
-
-.category h3 { font-size: 13px; }
-.category small { color: var(--muted); }
-
-.tools-section { background: #0b0f1a; }
-
-.filters {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 25px;
-}
-
-.filter {
-  padding: 8px 17px;
-  border-radius: 30px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.filter.active, .filter:hover {
-  background: var(--purple);
-  color: white;
-  border-color: var(--purple);
-}
-
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 20px;
-}
-
-.tool-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  padding: 22px;
-  transition: .25s;
-}
-
-.tool-card:hover {
-  transform: translateY(-5px);
-  border-color: #7050b8;
-}
-
-.tool-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 17px;
-}
-
-.tool-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: var(--card2);
-  display: grid;
-  place-items: center;
-  font-size: 25px;
-}
-
-.price {
-  color: #86efac;
-  background: rgba(34,197,94,.1);
-  border-radius: 20px;
-  padding: 4px 10px;
-  font-size: 11px;
-}
-
-.price.paid {
-  color: #fcd34d;
-  background: rgba(234,179,8,.1);
-}
-
-.tool-card h3 { font-size: 17px; }
-
-.tool-card p {
-  color: var(--muted);
-  font-size: 13px;
-  margin: 8px 0 18px;
-  min-height: 43px;
-}
-
-.tool-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid var(--border);
-  padding-top: 15px;
-}
-
-.tool-category { color: #b9a3ff; font-size: 11px; }
-
-.tool-actions { display: flex; gap: 8px; align-items: center; }
-
-.visit {
-  background: var(--purple);
-  color: white;
-  border: 0;
-  padding: 7px 13px;
-  border-radius: 7px;
-  font-size: 12px;
-  text-decoration: none;
-}
-
-.favorite {
-  background: var(--card2);
-  color: #94a3b8;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  padding: 5px 9px;
-  font-size: 17px;
-}
-
-.favorite.saved { color: #fb7185; }
-
-.empty {
-  grid-column: 1/-1;
-  text-align: center;
-  padding: 50px;
-  color: var(--muted);
-}
-
-.center { text-align: center; margin-top: 35px; }
-
-.secondary {
-  padding: 12px 25px;
-  background: transparent;
-  color: white;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-}
-
-.cta {
-  text-align: center;
-  padding: 65px 20px;
-  margin: 30px 7%;
-  border: 1px solid #463477;
-  border-radius: 20px;
-  background: linear-gradient(120deg,#18112d,#101c31);
-}
-
-.cta h2 { font-size: 30px; }
-.cta p { color: var(--muted); margin: 10px 0 25px; }
-
-footer {
-  border-top: 1px solid var(--border);
-  padding: 35px 7%;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 15px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-footer a { color: #a78bfa; text-decoration: none; }
-
-@media(max-width:850px) {
-  .categories { grid-template-columns: repeat(3,1fr); }
-  .tools-grid { grid-template-columns: repeat(2,1fr); }
-}
-
-@media(max-width:600px) {
-  nav { padding: 0 5%; }
-  .menu-button { display: block; }
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 76px;
-    left: 0;
-    width: 100%;
-    padding: 22px;
-    background: #101625;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .nav-links.show { display: flex; }
-  .hero { padding: 75px 18px 60px; }
-  .hero h1 { letter-spacing: -1.5px; }
-  .stats { gap: 25px; }
-  section { padding: 48px 5%; }
-  .categories { grid-template-columns: repeat(2,1fr); }
-  .tools-grid { grid-template-columns: 1fr; }
-  .section-header { align-items: flex-start; flex-direction: column; }
-  .cta { margin: 20px 5%; }
-}
+:root{--bg:#070b16;--panel:#10182a;--panel2:#151f35;--text:#f4f7ff;--muted:#9ba9c4;--cyan:#55e6ff;--purple:#a78bfa;--line:#26334e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
+a{color:inherit;text-decoration:none}.wrap{width:min(1180px,92%);margin:auto}
+header{position:sticky;top:0;z-index:10;background:#080d1beF;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}.logo{font-size:25px;font-weight:900;letter-spacing:-1px}.logo span{color:var(--cyan)}
+nav a{color:var(--muted);margin-left:22px;font-size:14px}nav a:hover{color:var(--cyan)}
+.hero{padding:92px 0 82px;background:radial-gradient(ellipse at 75% 30%,#392a7b99,transparent 42%),radial-gradient(ellipse at 20% 80%,#006c8b66,transparent 40%),linear-gradient(120deg,#081327,#10102c 55%,#071b2d);position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(115deg,transparent 30%,#55e6ff12 50%,transparent 70%);pointer-events:none}
+.hero-content{position:relative;max-width:760px}.eyebrow{color:var(--cyan);font-weight:800;letter-spacing:3px;font-size:12px}
+h1{font-size:clamp(42px,7vw,76px);line-height:1.02;margin:18px 0}.hero p{color:#c0cce2;font-size:18px;line-height:1.7;max-width:620px}
+.btn{display:inline-block;background:linear-gradient(90deg,var(--cyan),#9a8cff);color:#06101e;font-weight:800;padding:14px 22px;border-radius:12px;margin-top:15px}
+section{padding:64px 0}.section-title{font-size:32px;margin:0 0 10px}.sub{color:var(--muted);margin:0 0 28px}
+.controls{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}.controls input,.controls select{background:var(--panel);color:var(--text);border:1px solid var(--line);padding:13px 15px;border-radius:10px;font-size:14px}.controls input{flex:1;min-width:220px}
+.categories{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0 28px}.chip{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:9px 13px;border-radius:30px;cursor:pointer}.chip.active,.chip:hover{background:#123447;border-color:var(--cyan);color:var(--cyan)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.tool{background:linear-gradient(145deg,var(--panel),#0d1424);border:1px solid var(--line);padding:19px;border-radius:16px;transition:.2s}.tool:hover{transform:translateY(-4px);border-color:#4acde8}.tool-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.tool h3{margin:12px 0 7px;font-size:18px}.tool p{color:var(--muted);font-size:13px;line-height:1.5;min-height:38px}.tag{font-size:11px;color:var(--cyan);background:#0c2b3a;padding:6px 9px;border-radius:20px}.fav{border:0;background:transparent;color:#8c9ab5;font-size:21px;cursor:pointer}.fav.saved{color:#ff6eaa}.visit{display:inline-block;color:var(--cyan);font-size:13px;font-weight:700;margin-top:7px}
+.empty{color:var(--muted);padding:30px;text-align:center;grid-column:1/-1}.category-section{margin:34px 0 46px;scroll-margin-top:95px}.category-heading{display:flex;align-items:center;gap:12px;margin:0 0 18px;font-size:25px}.category-heading:after{content:"";height:1px;flex:1;background:var(--line)}.category-count{font-size:12px;color:var(--cyan);background:#0c2b3a;padding:6px 10px;border-radius:20px}
+.creator{background:linear-gradient(120deg,#101b33,#171331);border-top:1px solid var(--line);text-align:center}.avatar{width:128px;height:128px;border-radius:50%;display:block;object-fit:cover;object-position:center 35%;margin:25px auto;border:5px solid #ffffff18;box-shadow:0 0 35px #55e6ff30}.creator p{max-width:620px;margin:12px auto;color:var(--muted);line-height:1.7}
+footer{padding:25px;text-align:center;color:#73829f;border-top:1px solid var(--line);font-size:13px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}nav a{margin-left:10px}}@media(max-width:560px){nav{height:auto;padding:17px 0;align-items:flex-start}nav div:last-child{display:flex;flex-wrap:wrap;justify-content:flex-end}nav a{font-size:12px;margin:4px 0 4px 12px}.grid{grid-template-columns:1fr}.hero{padding:70px 0}}
 </style>
 </head>
-
 <body>
-
-<nav>
-  <div class="logo">Future<span>AI.</span></div>
-
-  <button class="menu-button" id="menuButton"
-    onclick="document.querySelector('.nav-links').classList.toggle('show')">
-    ☰
-  </button>
-
-  <div class="nav-links">
-    <a href="#home">Home</a>
-    <a href="#categories">Categories</a>
-    <a href="#tools">Explore Tools</a>
-    <a href="#favorites">Favorites</a>
-    <a href="#about">About</a>
-  </div>
-
-  <a class="nav-button" href="#tools">Explore AI</a>
-</nav>
-
-<header class="hero" id="home">
-  <div class="tag">✦ YOUR GATEWAY TO ARTIFICIAL INTELLIGENCE</div>
-
-  <h1>
-    Discover the <span class="gradient">Future</span><br>
-    of Artificial Intelligence
-  </h1>
-
-  <p>
-    Explore powerful AI tools that help you create, learn,
-    work and achieve more. Everything you need in one place.
-  </p>
-
-  <div class="search-box">
-    <input id="searchInput"
-      type="search"
-      placeholder="Search AI tools..."
-      aria-label="Search AI tools">
-    <button onclick="renderTools()">Search</button>
-  </div>
-
-  <div class="stats">
-    <div class="stat">
-      <strong>200+</strong>
-      <span>AI Tools Target</span>
-    </div>
-    <div class="stat">
-      <strong>10+</strong>
-      <span>Categories</span>
-    </div>
-    <div class="stat">
-      <strong>Free</strong>
-      <span>To Explore</span>
-    </div>
-  </div>
-</header>
-
-<section id="categories">
-  <div class="section-header">
-    <div>
-      <h2>Explore Categories</h2>
-      <p>Find the perfect AI tool for your needs.</p>
-    </div>
-  </div>
-
-  <div class="categories" id="categoryGrid"></div>
-</section>
-
-<section class="tools-section" id="tools">
-  <div class="section-header">
-    <div>
-      <h2>Discover AI Tools</h2>
-      <p>Explore useful artificial intelligence tools.</p>
-    </div>
-  </div>
-
-  <div class="filters">
-    <button class="filter active" data-filter="All">All Tools</button>
-    <button class="filter" data-filter="Free">Free</button>
-    <button class="filter" data-filter="Paid">Paid</button>
-    <button class="filter" data-filter="Favorites">Favorites ♥</button>
-  </div>
-
-  <div class="tools-grid" id="toolsGrid"></div>
-
-  <div class="center">
-    <button class="secondary" onclick="clearFilters()">
-      Show All Tools
-    </button>
-  </div>
-</section>
-
-<div class="cta" id="about">
-  <h2>Ready to Explore the Future?</h2>
-  <p>Discover smarter ways to create, learn and work with AI.</p>
-  <a href="#tools" class="primary-button">Explore AI Tools →</a>
-</div>
-
-<footer>
-  <div>
-    <strong class="logo">Future<span>AI.</span></strong>
-    <p>Discover. Create. Innovate.</p>
-  </div>
-  <div>
-    © 2026 FutureAI. All rights reserved.
-    <br>
-    Built for the future.
-  </div>
-</footer>
-
+<header><nav class="wrap"><a class="logo" href="#">Future<span>AI</span></a><div><a href="#tools">Explore Tools</a><a href="#creator">Creator</a><a href="#tools">Favorites</a></div></nav></header>
+<main>
+<section class="hero"><div class="wrap hero-content"><div class="eyebrow">YOUR AI DISCOVERY HUB</div><h1>Discover the Future<br>with <span style="color:var(--cyan)">AI</span></h1><p>Explore powerful artificial intelligence tools for creativity, productivity, learning, business and more — all in one place.</p><a class="btn" href="#tools">Explore 100 AI Tools →</a></div></section>
+<section id="tools"><div class="wrap"><h2 class="section-title">Explore AI Tools</h2><p class="sub">Find the right tool for your next big idea.</p>
+<div class="controls"><input id="search" placeholder="Search AI tools..." aria-label="Search tools"><select id="price"><option value="all">All pricing</option><option value="Free">Free</option><option value="Paid">Paid</option></select><select id="sort"><option value="name">Sort: A–Z</option><option value="category">Sort: Category</option></select></div>
+<div class="categories" id="categories"></div><div id="categorySections"></div>
+</div></section>
+<section class="creator" id="creator"><div class="wrap"><div class="eyebrow">MEET THE CREATOR</div><h2 class="section-title">Malik Gulzaib</h2><img class="avatar" src="assets/malik-gulzaib.jpg" alt="Malik Gulzaib, creator of FutureAI"><p>I'm Malik Gulzaib, the creator of FutureAI. This platform is built to help people discover useful AI tools and explore the possibilities of artificial intelligence.</p></div></section>
+</main><footer>© 2026 FutureAI · Discover. Create. Innovate.</footer>
 <script>
-
-// CATEGORIES
-
-const categories = [
-  {name:"AI Chatbots",icon:"💬",count:"Explore"},
-  {name:"AI Image",icon:"🎨",count:"Explore"},
-  {name:"AI Video",icon:"🎬",count:"Explore"},
-  {name:"AI Writing",icon:"✍️",count:"Explore"},
-  {name:"AI Coding",icon:"💻",count:"Explore"},
-  {name:"AI Voice",icon:"🎙️",count:"Explore"},
-  {name:"AI Education",icon:"📚",count:"Explore"},
-  {name:"AI Design",icon:"🖌️",count:"Explore"},
-  {name:"AI Productivity",icon:"⚡",count:"Explore"},
-  {name:"AI Business",icon:"💼",count:"Explore"}
+const raw = [
+["ChatGPT","AI Chatbots","AI assistant for writing, learning and problem-solving","https://chatgpt.com","Free"],
+["Claude","AI Chatbots","Conversational AI for writing and analysis","https://claude.ai","Free"],
+["Google Gemini","AI Chatbots","Google's multimodal AI assistant","https://gemini.google.com","Free"],
+["Microsoft Copilot","AI Chatbots","AI assistant across Microsoft services","https://copilot.microsoft.com","Free"],
+["Perplexity","AI Chatbots","AI-powered answer and research engine","https://www.perplexity.ai","Free"],
+["Poe","AI Chatbots","Explore multiple AI bots in one place","https://poe.com","Free"],
+["Character.AI","AI Chatbots","Chat with user-created AI characters","https://character.ai","Free"],
+["You.com","AI Chatbots","AI search and assistant platform","https://you.com","Free"],
+["Pi","AI Chatbots","Personal conversational AI","https://pi.ai","Free"],
+["HuggingChat","AI Chatbots","Open-source AI chat experience","https://huggingface.co/chat","Free"],
+["Midjourney","AI Image","Create images from text prompts","https://www.midjourney.com","Paid"],
+["DALL·E","AI Image","Generate images from text descriptions","https://openai.com","Paid"],
+["Adobe Firefly","AI Image","Generative image tools from Adobe","https://firefly.adobe.com","Free"],
+["Leonardo AI","AI Image","Create detailed AI artwork","https://leonardo.ai","Free"],
+["Ideogram","AI Image","Image generation with strong text rendering","https://ideogram.ai","Free"],
+["Canva AI","AI Image","AI-powered design and image creation","https://www.canva.com","Free"],
+["Playground AI","AI Image","Create and edit AI images","https://playground.com","Free"],
+["NightCafe","AI Image","AI art generation community","https://nightcafe.studio","Free"],
+["Dream by WOMBO","AI Image","Turn prompts into digital artwork","https://dream.ai","Free"],
+["Craiyon","AI Image","Simple text-to-image generation","https://www.craiyon.com","Free"],
+["Runway","AI Video","AI video generation and editing","https://runwayml.com","Paid"],
+["Pika","AI Video","Create videos from prompts and images","https://pika.art","Free"],
+["Luma Dream Machine","AI Video","Generate realistic AI video clips","https://lumalabs.ai","Free"],
+["Synthesia","AI Video","Create videos with AI avatars","https://www.synthesia.io","Paid"],
+["HeyGen","AI Video","AI avatar and video translation tools","https://www.heygen.com","Free"],
+["InVideo AI","AI Video","Create videos from text prompts","https://invideo.io","Free"],
+["VEED AI","AI Video","Online video editing with AI features","https://www.veed.io","Free"],
+["Kapwing","AI Video","Collaborative online video editor","https://www.kapwing.com","Free"],
+["Fliki","AI Video","Convert text into videos with voice","https://fliki.ai","Free"],
+["OpusClip","AI Video","Turn long videos into short clips","https://www.opus.pro","Free"],
+["Grammarly","AI Writing","Writing assistance and grammar checking","https://www.grammarly.com","Free"],
+["Jasper","AI Writing","AI marketing and brand content","https://www.jasper.ai","Paid"],
+["Copy.ai","AI Writing","AI writing and go-to-market workflows","https://www.copy.ai","Free"],
+["Writesonic","AI Writing","AI content and SEO writing","https://writesonic.com","Free"],
+["QuillBot","AI Writing","Paraphrasing and writing tools","https://quillbot.com","Free"],
+["Wordtune","AI Writing","Rewrite and improve your writing","https://www wordtune.com","Free"],
+["Rytr","AI Writing","AI writing assistant for content","https://rytr.me","Free"],
+["Sudowrite","AI Writing","Creative writing assistant","https://sudowrite.com","Paid"],
+["DeepL Write","AI Writing","Improve clarity and tone","https://www.deepl.com/write","Free"],
+["LanguageTool","AI Writing","Grammar and style checker","https://languagetool.org","Free"],
+["GitHub Copilot","AI Coding","AI pair programmer","https://github.com/features/copilot","Paid"],
+["Cursor","AI Coding","AI-first code editor","https://cursor.com","Free"],
+["Replit","AI Coding","Build and deploy apps with AI support","https://replit.com","Free"],
+["Codeium","AI Coding","AI coding autocomplete and chat","https://codeium.com","Free"],
+["Tabnine","AI Coding","AI code completion","https://www.tabnine.com","Free"],
+["Amazon Q Developer","AI Coding","AI assistant for software development","https://aws.amazon.com/q/developer","Free"],
+["Sourcegraph Cody","AI Coding","AI coding assistant for codebases","https://sourcegraph.com/cody","Free"],
+[" v0","AI Coding","Generate UI from text prompts","https://v0.dev","Free"],
+["Bolt.new","AI Coding","Build web apps from prompts","https://bolt.new","Free"],
+["Lovable","AI Coding","Generate full-stack apps with AI","https://lovable.dev","Free"],
+["ElevenLabs","AI Voice","AI voice generation and cloning tools","https://elevenlabs.io","Free"],
+["Murf AI","AI Voice","AI voiceovers for content","https://murf.ai","Free"],
+["Speechify","AI Voice","Text-to-speech reader","https://speechify.com","Free"],
+["PlayHT","AI Voice","AI text-to-speech platform","https://play.ht","Free"],
+["Resemble AI","AI Voice","AI voice generation platform","https://www.resemble.ai","Paid"],
+["LOVO","AI Voice","AI voiceovers and voice generation","https://lovo.ai","Free"],
+["Descript","AI Voice","Audio and video editing with AI","https://www.descript.com","Free"],
+["Adobe Podcast","AI Voice","AI audio enhancement tools","https://podcast.adobe.com","Free"],
+["NaturalReader","AI Voice","Text-to-speech software","https://www.naturalreaders.com","Free"],
+["Voicemod","AI Voice","Voice effects and voice changing","https://www.voicemod.net","Free"],
+["Khanmigo","AI Education","AI learning assistant from Khan Academy","https://www.khanacademy.org/khan-labs","Paid"],
+["Quizlet","AI Education","AI-supported study and flashcards","https://quizlet.com","Free"],
+["Duolingo Max","AI Education","AI-enhanced language learning","https://www.duolingo.com","Paid"],
+["Socratic","AI Education","Learning support for school subjects","https://socratic.org","Free"],
+["Photomath","AI Education","Step-by-step math learning support","https://photomath.com","Free"],
+["Wolfram Alpha","AI Education","Computational knowledge engine","https://www.wolframalpha.com","Free"],
+["Elicit","AI Education","AI research assistant for papers","https://elicit.com","Free"],
+["Consensus","AI Education","Search research-backed answers","https://consensus.app","Free"],
+["Explainpaper","AI Education","Understand academic papers","https://www.explainpaper.com","Free"],
+["Studyable","AI Education","AI-powered study tools","https://studyable.app","Free"],
+["Canva","AI Design","Visual design platform with AI tools","https://www.canva.com","Free"],
+["Figma AI","AI Design","AI features for interface design","https://www.figma.com","Free"],
+["Khroma","AI Design","AI color palette generator","https://www.khroma.co","Free"],
+["Uizard","AI Design","Generate app and website mockups","https://uizard.io","Free"],
+["Looka","AI Design","AI logo and brand design","https://looka.com","Paid"],
+["Designs.ai","AI Design","AI-powered creative suite","https://designs.ai","Paid"],
+["Remove.bg","AI Design","Remove image backgrounds","https://www.remove.bg","Free"],
+["Cleanup.pictures","AI Design","Remove unwanted objects from photos","https://cleanup.pictures","Free"],
+["Clipdrop","AI Design","AI image editing tools","https://clipdrop.co","Free"],
+["Microsoft Designer","AI Design","Create designs with AI","https://designer.microsoft.com","Free"],
+["Notion AI","AI Productivity","AI writing and workspace assistant","https://www.notion.so/product/ai","Paid"],
+["ClickUp AI","AI Productivity","AI features for project management","https://clickup.com/ai","Paid"],
+["Motion","AI Productivity","AI calendar and task planning","https://www.usemotion.com","Paid"],
+["Taskade","AI Productivity","AI-powered tasks and workflows","https://www.taskade.com","Free"],
+["Otter.ai","AI Productivity","AI meeting transcription and notes","https://otter.ai","Free"],
+["Fireflies.ai","AI Productivity","Meeting assistant and transcription","https://fireflies.ai","Free"],
+["Mem","AI Productivity","AI-powered notes and knowledge","https://mem.ai","Free"],
+["Reclaim AI","AI Productivity","Smart calendar scheduling","https://reclaim.ai","Free"],
+["Airtable AI","AI Productivity","AI features for connected apps","https://www.airtable.com","Free"],
+["Zapier AI","AI Productivity","Automate workflows with AI","https://zapier.com/ai","Free"],
+["HubSpot AI","AI Business","AI tools for marketing and sales","https://www.hubspot.com","Free"],
+["Salesforce Einstein","AI Business","AI for CRM and business workflows","https://www.salesforce.com","Paid"],
+["Zoho Zia","AI Business","AI assistant for business apps","https://www.zoho.com/zia","Free"],
+["Tome","AI Business","AI storytelling and presentations","https://tome.app","Free"],
+["Beautiful.ai","AI Business","AI presentation design","https://www.beautiful.ai","Paid"],
+["Gamma","AI Business","Create presentations and documents with AI","https://gamma.app","Free"],
+["AdCreative.ai","AI Business","Generate ad creatives with AI","https://www.adcreative.ai","Paid"],
+["Durable","AI Business","AI website builder for businesses","https://durable.co","Paid"],
+["Browse AI","AI Business","No-code web data extraction","https://www.browse.ai","Free"],
+["Mixo","AI Business","AI website and landing page builder","https://mixo.io","Paid"]
 ];
-
-// INITIAL FEATURED TOOLS
-// The full 200-tool directory will be added in the next step.
-
-const tools = [
-  {name:"ChatGPT",icon:"🤖",category:"AI Chatbots",price:"Free",description:"AI assistant for writing, learning and problem solving.",url:"https://chatgpt.com"},
-  {name:"Claude",icon:"🧠",category:"AI Chatbots",price:"Free",description:"AI assistant for reasoning, writing and research.",url:"https://claude.ai"},
-  {name:"Google Gemini",icon:"✨",category:"AI Chatbots",price:"Free",description:"Google's AI assistant for everyday tasks.",url:"https://gemini.google.com"},
-  {name:"Microsoft Copilot",icon:"🔷",category:"AI Chatbots",price:"Free",description:"AI assistant for productivity and creativity.",url:"https://copilot.microsoft.com"},
-  {name:"Perplexity",icon:"🔎",category:"AI Chatbots",price:"Free",description:"AI-powered search and research assistant.",url:"https://www.perplexity.ai"},
-  {name:"Midjourney",icon:"🎨",category:"AI Image",price:"Paid",description:"Create artistic images from text prompts.",url:"https://www.midjourney.com"},
-  {name:"Leonardo AI",icon:"🖼️",category:"AI Image",price:"Free",description:"Generate creative AI artwork and images.",url:"https://leonardo.ai"},
-  {name:"Ideogram",icon:"🌈",category:"AI Image",price:"Free",description:"Generate images and designs with text.",url:"https://ideogram.ai"},
-  {name:"Adobe Firefly",icon:"🔥",category:"AI Image",price:"Free",description:"AI image generation and creative editing.",url:"https://firefly.adobe.com"},
-  {name:"Canva AI",icon:"🪄",category:"AI Design",price:"Free",description:"Create designs with AI-powered features.",url:"https://www.canva.com"},
-  {name:"Runway",icon:"🎬",category:"AI Video",price:"Free",description:"AI-powered video creation and editing.",url:"https://runwayml.com"},
-  {name:"Pika",icon:"🎥",category:"AI Video",price:"Free",description:"Create videos using artificial intelligence.",url:"https://pika.art"},
-  {name:"Synthesia",icon:"👨‍💻",category:"AI Video",price:"Paid",description:"Create videos featuring AI avatars.",url:"https://www.synthesia.io"},
-  {name:"InVideo AI",icon:"📽️",category:"AI Video",price:"Free",description:"Generate videos from text descriptions.",url:"https://invideo.io"},
-  {name:"Grammarly",icon:"📝",category:"AI Writing",price:"Free",description:"Improve grammar, clarity and writing.",url:"https://www.grammarly.com"},
-  {name:"Jasper",icon:"✍️",category:"AI Writing",price:"Paid",description:"AI writing assistant for marketing content.",url:"https://www.jasper.ai"},
-  {name:"QuillBot",icon:"📖",category:"AI Writing",price:"Free",description:"Paraphrase and improve written content.",url:"https://quillbot.com"},
-  {name:"Copy.ai",icon:"📋",category:"AI Writing",price:"Free",description:"AI-assisted writing and marketing workflows.",url:"https://www.copy.ai"},
-  {name:"GitHub Copilot",icon:"🐙",category:"AI Coding",price:"Paid",description:"AI coding assistance inside your editor.",url:"https://github.com/features/copilot"},
-  {name:"Cursor",icon:"⌨️",category:"AI Coding",price:"Free",description:"AI-powered code editor for developers.",url:"https://cursor.com"},
-  {name:"Replit",icon:"💻",category:"AI Coding",price:"Free",description:"Build and run projects with AI assistance.",url:"https://replit.com"},
-  {name:"ElevenLabs",icon:"🎙️",category:"AI Voice",price:"Free",description:"AI voice generation and text-to-speech.",url:"https://elevenlabs.io"},
-  {name:"Suno",icon:"🎵",category:"AI Voice",price:"Free",description:"Create original music with AI.",url:"https://suno.com"},
-  {name:"Khan Academy",icon:"🎓",category:"AI Education",price:"Free",description:"Learn subjects with educational resources.",url:"https://www.khanacademy.org"},
-  {name:"Gamma",icon:"📊",category:"AI Productivity",price:"Free",description:"Create presentations and documents with AI.",url:"https://gamma.app"},
-  {name:"Notion AI",icon:"📓",category:"AI Productivity",price:"Paid",description:"AI assistance for notes and workflows.",url:"https://www.notion.so/product/ai"},
-  {name:"Zapier",icon:"⚙️",category:"AI Business",price:"Free",description:"Automate workflows across online apps.",url:"https://zapier.com"},
-  {name:"DeepL",icon:"🌍",category:"AI Productivity",price:"Free",description:"AI-powered translation and writing tools.",url:"https://www.deepl.com"},
-  {name:"Remove.bg",icon:"✂️",category:"AI Design",price:"Free",description:"Remove image backgrounds automatically.",url:"https://www.remove.bg"},
-  {name:"Figma AI",icon:"🎯",category:"AI Design",price:"Free",description:"Design and prototype digital products.",url:"https://www.figma.com"}
-];
-
-let activeCategory = "All";
-let activeFilter = "All";
-let favorites = JSON.parse(localStorage.getItem("futureai-favorites") || "[]");
-
-// CATEGORY DISPLAY
-
-function renderCategories() {
-  const grid = document.getElementById("categoryGrid");
-
-  grid.innerHTML = categories.map(cat => `
-    <button class="category ${activeCategory===cat.name?"active":""}"
-      onclick="selectCategory('${cat.name}')">
-      <span class="emoji">${cat.icon}</span>
-      <h3>${cat.name}</h3>
-      <small>${cat.count} tools</small>
-    </button>
-  `).join("");
-}
-
-// TOOL DISPLAY
-
-function renderTools() {
-  const query = document.getElementById("searchInput")
-    .value.toLowerCase().trim();
-
-  const filtered = tools.filter(tool => {
-    const matchesSearch =
-      tool.name.toLowerCase().includes(query) ||
-      tool.description.toLowerCase().includes(query) ||
-      tool.category.toLowerCase().includes(query);
-
-    const matchesCategory =
-      activeCategory === "All" ||
-      tool.category === activeCategory;
-
-    const matchesFilter =
-      activeFilter === "All" ||
-      (activeFilter === "Free" && tool.price === "Free") ||
-      (activeFilter === "Paid" && tool.price === "Paid") ||
-      (activeFilter === "Favorites" && favorites.includes(tool.name));
-
-    return matchesSearch && matchesCategory && matchesFilter;
-  });
-
-  const grid = document.getElementById("toolsGrid");
-
-  if (!filtered.length) {
-    grid.innerHTML = `
-      <div class="empty">
-        <h3>No tools found 😕</h3>
-        <p>Try another search or category.</p>
-      </div>
-    `;
-    return;
-  }
-
-  grid.innerHTML = filtered.map(tool => `
-    <article class="tool-card">
-      <div class="tool-top">
-        <div class="tool-icon">${tool.icon}</div>
-        <span class="price ${tool.price==="Paid"?"paid":""}">
-          ${tool.price}
-        </span>
-      </div>
-
-      <h3>${tool.name}</h3>
-      <p>${tool.description}</p>
-
-      <div class="tool-bottom">
-        <span class="tool-category">${tool.category}</span>
-        <div class="tool-actions">
-          <button class="favorite ${favorites.includes(tool.name)?"saved":""}"
-            aria-label="Toggle favorite for ${tool.name}"
-            onclick="toggleFavorite('${tool.name.replace(/'/g,"\\'")}')">
-            ${favorites.includes(tool.name)?"♥":"♡"}
-          </button>
-          <a class="visit" href="${tool.url}" target="_blank"
-            rel="noopener noreferrer">Visit ↗</a>
-        </div>
-      </div>
-    </article>
-  `).join("");
-}
-
-// CATEGORY FILTER
-
-function selectCategory(category) {
-  activeCategory = activeCategory === category ? "All" : category;
-  renderCategories();
-  renderTools();
-  document.getElementById("tools").scrollIntoView({
-    behavior:"smooth"
+const tools=raw.map((x,i)=>({id:i+1,name:x[0].trim(),cat:x[1],desc:x[2],url:x[3],price:x[4]}));
+const cats=["All",...new Set(tools.map(t=>t.cat))];
+const saved=new Set(JSON.parse(localStorage.getItem("futureai-favs")||"[]"));
+const sections=document.getElementById("categorySections"), chips=document.getElementById("categories");
+function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
+function renderCats(){
+  chips.innerHTML=cats.map(c=>`<button class="chip" data-cat="${c}">${c}</button>`).join("");
+  chips.querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    const c=b.dataset.cat;
+    if(c==="All") document.getElementById("tools").scrollIntoView({behavior:"smooth"});
+    else document.getElementById("cat-"+slug(c))?.scrollIntoView({behavior:"smooth",block:"start"});
   });
 }
-
-// FAVORITES
-
-function toggleFavorite(name) {
-  if (favorites.includes(name)) {
-    favorites = favorites.filter(item => item !== name);
-  } else {
-    favorites.push(name);
-  }
-
-  localStorage.setItem("futureai-favorites",JSON.stringify(favorites));
-  renderTools();
+function card(t){
+  return `<article class="tool"><div class="tool-top"><span class="tag">${t.cat}</span><button class="fav ${saved.has(t.id)?"saved":""}" data-id="${t.id}" aria-label="Toggle favorite">${saved.has(t.id)?"♥":"♡"}</button></div><h3>${t.name}</h3><p>${t.desc}</p><span class="tag">${t.price}</span><br><a class="visit" href="${t.url}" target="_blank" rel="noopener">Visit website ↗</a></article>`;
 }
-
-// FILTER BUTTONS
-
-document.querySelectorAll(".filter").forEach(button => {
-  button.addEventListener("click", () => {
-    activeFilter = button.dataset.filter;
-
-    document.querySelectorAll(".filter").forEach(btn =>
-      btn.classList.remove("active")
-    );
-
-    button.classList.add("active");
-    renderTools();
+function render(){
+  const q=document.getElementById("search").value.toLowerCase();
+  const p=document.getElementById("price").value;
+  const sort=document.getElementById("sort").value;
+  sections.innerHTML=cats.slice(1).map(cat=>{
+    let list=tools.filter(t=>t.cat===cat&&(p==="all"||t.price===p)&&(t.name+" "+t.cat+" "+t.desc).toLowerCase().includes(q));
+    if(sort==="name") list.sort((a,b)=>a.name.localeCompare(b.name));
+    else list.sort((a,b)=>a.cat.localeCompare(b.cat)||a.name.localeCompare(b.name));
+    if(!list.length) return "";
+    return `<section class="category-section" id="cat-${slug(cat)}"><h3 class="category-heading">${cat}<span class="category-count">${list.length} tools</span></h3><div class="grid">${list.map(card).join("")}</div></section>`;
+  }).join("")||`<div class="empty">No tools found. Try another search.</div>`;
+  sections.querySelectorAll(".fav").forEach(b=>b.onclick=()=>{
+    const id=Number(b.dataset.id);
+    saved.has(id)?saved.delete(id):saved.add(id);
+    localStorage.setItem("futureai-favs",JSON.stringify([...saved]));
+    render();
   });
-});
-
-// SEARCH
-
-document.getElementById("searchInput")
-  .addEventListener("input",renderTools);
-
-// RESET FILTERS
-
-function clearFilters() {
-  activeCategory = "All";
-  activeFilter = "All";
-  document.getElementById("searchInput").value = "";
-
-  document.querySelectorAll(".filter").forEach(btn =>
-    btn.classList.toggle("active",btn.dataset.filter==="All")
-  );
-
-  renderCategories();
-  renderTools();
 }
-
-// INITIALIZE WEBSITE
-
-renderCategories();
-renderTools();
-
-</script>
-</body>
-</html>
+document.getElementById("search").addEventListener("input",render);document.getElementById("price").addEventListener("change",render);document.getElementById("sort").addEventListener("change",render);renderCats();render();
+</script></body></html>
